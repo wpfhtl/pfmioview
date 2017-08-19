@@ -1,13 +1,11 @@
 //#define auxDIBImageLoad auxDIBImageLoadW
 //#define _WIN32
 #if defined _WIN32 && !defined __MINGW32__
-#include <intrin.h>
 #include <windows.h>
 #include <crtdbg.h>
-# define popcnt __popcnt
-# pragma warning( disable : 4267 )
 #else
-# define popcnt __builtin_popcount
+#define _ASSERT(expr) ((void)0)
+#define _ASSERTE(expr) ((void)0)
 #endif
 #include <opencv2/highgui/highgui.hpp>
 #include <opencv2/imgproc/imgproc.hpp>
@@ -35,6 +33,7 @@ int main(int argc, char** argv){
 	
 	for (int32_t i = 1; i <= 800; i++) {
 		// input file names
+		cout << "frame " << i << endl;
 		strncpy(input_L, argv[1], strlen(argv[1]));
 		input_L[strlen(argv[1])] = '\0';
 		strncpy(input_R, argv[1], strlen(argv[1]));
